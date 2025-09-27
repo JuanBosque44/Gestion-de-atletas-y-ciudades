@@ -1,5 +1,6 @@
 
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Ciudad } from 'src/ciudad/entities/ciudad.entity';
 
 @Entity()
 export class Atleta {
@@ -18,8 +19,8 @@ export class Atleta {
     @Column()
     posicion: number;
 
-    @OneToMany()
-    ciudadId:number;
+/*     @OneToMany(() => Ciudad, (nombre) => Ciudad.nombre)
+ */    ciudadId:number;
 
 }
 
