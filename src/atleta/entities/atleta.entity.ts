@@ -1,8 +1,9 @@
 
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, Unique } from 'typeorm';
 import { Ciudad } from 'src/ciudad/entities/ciudad.entity';
 
 @Entity()
+@Unique(['dni'])
 export class Atleta {
     @PrimaryGeneratedColumn()
     id:number;
@@ -19,8 +20,13 @@ export class Atleta {
     @Column()
     posicion: number;
 
-/*     @OneToMany(() => Ciudad, (nombre) => Ciudad.nombre)
- */    ciudadId:number;
+    @ManyToOne(() => Ciudad, (ciudad) => ciudad.atletas, { eager: true })
+    @JoinColumn({ name: 'ciudadId' }) 
+    ciudad: Ciudad;
+
+    @Column()
+    ciudadId: number; 
+
 
 }
 

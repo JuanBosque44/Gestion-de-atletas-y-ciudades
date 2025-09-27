@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Atleta } from "src/atleta/entities/atleta.entity";
 
 @Entity()
 export class Ciudad {
@@ -7,4 +8,7 @@ export class Ciudad {
 
     @Column()
     nombre:string;
+    
+    @OneToMany(() => Atleta, (atleta) => atleta.ciudad)
+    atletas: Atleta[];
 }

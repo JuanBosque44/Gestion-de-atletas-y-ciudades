@@ -1,26 +1,35 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAtletaDto } from './dto/create-atleta.dto';
 import { UpdateAtletaDto } from './dto/update-atleta.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Atleta } from './entities/atleta.entity';
 
 @Injectable()
 export class AtletaService {
+  constructor(
+      @InjectRepository(Atleta)
+      private atletaRepository: Repository<Atleta>,
+    ) {}
+
   create(createAtletaDto: CreateAtletaDto) {
-    return 'This action adds a new atleta';
+    const atleta = this.atletaRepository.create(createAtletaDto);
+    return this.atletaRepository.save(atleta);
   }
 
   findAll() {
-    return `This action returns all atleta`;
+    return this.atletaRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} atleta`;
+    return this.atletaRepository.findOneBy({id});
   }
 
   update(id: number, updateAtletaDto: UpdateAtletaDto) {
-    return `This action updates a #${id} atleta`;
+    return this.atletaRepository.update(id, updateAtletaDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} atleta`;
+    return this.atletaRepository.delete(id);
   }
 }

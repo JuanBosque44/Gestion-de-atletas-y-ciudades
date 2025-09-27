@@ -1,26 +1,36 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCiudadDto } from './dto/create-ciudad.dto';
 import { UpdateCiudadDto } from './dto/update-ciudad.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Ciudad } from './entities/ciudad.entity';
 
 @Injectable()
 export class CiudadService {
+  constructor(
+    @InjectRepository(Ciudad)
+    private ciudadRepository: Repository<Ciudad>,
+  ) {}
+
   create(createCiudadDto: CreateCiudadDto) {
-    return 'This action adds a new ciudad';
+    const ciudad = this.ciudadRepository.create(createCiudadDto);
+    return this.ciudadRepository.save(ciudad);
   }
 
   findAll() {
-    return `This action returns all ciudad`;
+    return this.ciudadRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} ciudad`;
+    return this.ciudadRepository.findOneBy({id});
   }
 
-  update(id: number, updateCiudadDto: UpdateCiudadDto) {
-    return `This action updates a #${id} ciudad`;
+  async update(id: number, updateCiudadDto: UpdateCiudadDto) {
+    await this.ciudadRepository.update(id, updateCiudadDto);
+    return this.findOne(id);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} ciudad`;
+    return this.ciudadRepository.delete(id);
   }
 }
