@@ -1,3 +1,3 @@
 export class CreateCiudadDto {
-    nombre:string
+    nombre: string
 }

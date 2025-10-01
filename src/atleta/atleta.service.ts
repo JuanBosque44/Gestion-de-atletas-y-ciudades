@@ -17,9 +17,9 @@ export class AtletaService {
     return this.atletaRepository.save(atleta);
   }
 
-  findAll() {
-    return this.atletaRepository.find();
-  }
+  async findAll() {
+  return this.atletaRepository.find(); 
+}
 
   findOne(id: number) {
     return this.atletaRepository.findOneBy({id});

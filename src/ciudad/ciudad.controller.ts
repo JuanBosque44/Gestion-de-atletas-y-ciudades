@@ -13,8 +13,11 @@ export class CiudadController {
   }
 
   @Get()
-  findAll() {
-    return this.ciudadService.findAll();
+  async findAll() {
+    const ciudades = await this.ciudadService.findAll();
+    return  ciudades.map((c) => ({
+        nombre: c.nombre
+    }));
   }
 
   @Get(':id')

@@ -13,8 +13,16 @@ export class AtletaController {
   }
 
   @Get()
-  findAll() {
-    return this.atletaService.findAll();
+  async findAll() {
+  const atletas = await this.atletaService.findAll();
+
+  return atletas.map((a) => ({
+    nombre: a.nombre,
+    tiempo: a.tiempo,
+    posicion: a.posicion,
+    ciudad: a.ciudad.nombre
+    //dni: a.dni
+  }));
   }
 
   @Get(':id')

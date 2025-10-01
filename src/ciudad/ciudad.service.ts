@@ -17,7 +17,7 @@ export class CiudadService {
     return this.ciudadRepository.save(ciudad);
   }
 
-  findAll() {
+  async findAll() {
     return this.ciudadRepository.find();
   }
 
