@@ -1,6 +1,6 @@
 
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, Unique } from 'typeorm';
-import { Ciudad } from 'src/ciudad/entities/ciudad.entity';
+import { Ciudad } from 'Backend/src/ciudad/entities/ciudad.entity';
 
 @Entity()
 @Unique(['dni'])

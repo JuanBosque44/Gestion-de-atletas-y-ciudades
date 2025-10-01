@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
-import { Atleta } from "src/atleta/entities/atleta.entity";
+import { Atleta } from "Backend/src/atleta/entities/atleta.entity";
 
 @Entity()
 export class Ciudad {
