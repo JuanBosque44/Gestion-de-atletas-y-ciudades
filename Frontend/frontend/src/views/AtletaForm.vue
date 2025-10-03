@@ -9,7 +9,7 @@ const nombre = ref('');
 const dni = ref(0);
 const posicion = ref(0);
 const tiempo = ref('');
-const ciudad = ref('');
+const ciudad = ref(0);
 const {registarForm} = useAtletaStore();
 
 const submitForm = () => {
