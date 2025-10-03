@@ -2,9 +2,16 @@
 import { RouterLink } from 'vue-router'
 import { useGetData } from '../composables/data.js'
 import SelectCiudad from '../components/selectCiudad.vue'
+import { ref, onMounted } from 'vue'
 
+const atletas = ref([])
 const {data, error, cargando,  getData} = useGetData();
-getData('http://localhost:3000/atleta');
+onMounted(async() => {
+        await getData('http://localhost:3000/atleta');
+        atletas.value = data.value;
+        console.log(data.value);
+    });
+
 </script>
 
 <template>
@@ -17,9 +24,7 @@ getData('http://localhost:3000/atleta');
     <div v-if="data">
         <p>Listado de atletas</p>
         <SelectCiudad></SelectCiudad>
-        <!-- <ul>
-            <li v-for="(value) in data">{{ value }}</li>
-        </ul> -->
+        
         <table>
             <thead>
                 <tr>
@@ -30,11 +35,11 @@ getData('http://localhost:3000/atleta');
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(value) in data" :key="value.id">
+                <tr v-for="value in atletas" :key="value.id">
                     <td>{{ value.posicion }}</td>
                     <td>{{ value.nombre }}</td>
                     <td>{{ value.tiempo }}</td>
-                    <td>{{ value.ciudad.nombre }}</td>
+                    <td>{{ value.ciudad }}</td>
                 </tr>
             </tbody>
         </table>

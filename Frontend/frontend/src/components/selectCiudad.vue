@@ -18,7 +18,7 @@
 
 <template>
     <div v-if="data">
-        <select id="" v-model="ciudad">
+        <select v-model="ciudad" class="form-control">
             <option v-for="c in ciudades" :key="c.id" :value="c.id">{{ c.nombre }}</option>
         </select>
     </div>
