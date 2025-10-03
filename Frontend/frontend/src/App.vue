@@ -7,8 +7,8 @@ import { RouterLink, RouterView } from 'vue-router'
 
     <h1>Gestor de Atletas y Ciudades</h1>
     <nav class="nav">
-      <RouterLink to="/ciudad">Ciudades</RouterLink>
-      <RouterLink to="/atleta">Atletas</RouterLink>
+      <RouterLink to="/ciudad" class="nav-link">Ciudades</RouterLink>
+      <RouterLink to="/atleta" class="nav-link">Atletas</RouterLink>
     </nav>
   </header>
 

@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import { useGetData } from '../composables/data.js'
+import SelectCiudad from '../components/selectCiudad.vue'
 
 const {data, error, cargando,  getData} = useGetData();
 getData('http://localhost:3000/atleta');
@@ -15,9 +16,28 @@ getData('http://localhost:3000/atleta');
     </div>
     <div v-if="data">
         <p>Listado de atletas</p>
-        <ul>
+        <SelectCiudad></SelectCiudad>
+        <!-- <ul>
             <li v-for="(value) in data">{{ value }}</li>
-        </ul>
+        </ul> -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Posición</th>
+                    <th>Nombre</th>
+                    <th>Tiempo</th>
+                    <th>Ciudad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(value) in data" :key="value.id">
+                    <td>{{ value.posicion }}</td>
+                    <td>{{ value.nombre }}</td>
+                    <td>{{ value.tiempo }}</td>
+                    <td>{{ value.ciudad.nombre }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div v-if="error">
         <p>No hay atletas registrados</p>

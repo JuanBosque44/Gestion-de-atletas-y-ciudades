@@ -14,10 +14,11 @@ export class CiudadController {
 
   @Get()
   async findAll() {
-    const ciudades = await this.ciudadService.findAll();
+    /* const ciudades = await this.ciudadService.findAll();
     return  ciudades.map((c) => ({
         nombre: c.nombre
-    }));
+    })); */
+    return this.ciudadService.findAll();
   }
 
   @Get(':id')
