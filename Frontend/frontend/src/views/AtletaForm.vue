@@ -9,11 +9,12 @@ const nombre = ref('');
 const dni = ref(0);
 const posicion = ref(0);
 const tiempo = ref('');
-const ciudad = ref(0);
+const ciudad = ref('');
 const {registarForm} = useAtletaStore();
 
 const submitForm = () => {
-    registarForm(dni.value, nombre.value, posicion.value, tiempo.value,ciudad.value);
+    const ciudadId = Number(ciudad.value);
+    registarForm(dni.value, nombre.value, posicion.value, tiempo.value,ciudadId);
     router.push('/atleta');   
 }
 </script>

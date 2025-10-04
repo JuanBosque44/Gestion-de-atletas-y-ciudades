@@ -4,6 +4,7 @@ import { UpdateAtletaDto } from './dto/update-atleta.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Atleta } from './entities/atleta.entity';
+import { Ciudad } from '../ciudad/entities/ciudad.entity';
 
 @Injectable()
 export class AtletaService {
@@ -12,8 +13,13 @@ export class AtletaService {
       private atletaRepository: Repository<Atleta>,
     ) {}
 
-  create(createAtletaDto: CreateAtletaDto) {
-    const atleta = this.atletaRepository.create(createAtletaDto);
+  create(dto: CreateAtletaDto) {
+    const atleta = new Atleta();
+    atleta.dni = dto.dni;
+    atleta.nombre = dto.nombre;
+    atleta.posicion = dto.posicion;
+    atleta.tiempo = dto.tiempo;
+    atleta.ciudad = { id: dto.ciudadId } as Ciudad;
     return this.atletaRepository.save(atleta);
   }
 

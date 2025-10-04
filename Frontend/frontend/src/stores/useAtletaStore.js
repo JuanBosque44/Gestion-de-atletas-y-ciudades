@@ -7,21 +7,21 @@ export const useAtletaStore = defineStore('atleta', () => {
   const nombre = ref('')
   const posicion = ref(0)
   const tiempo = ref('')
-  const ciudad = ref('')
+  const ciudadId = ref(0)
 
   const registarForm = (dniF, nombreF, posicionF, tiempoF, ciudadF) => {
     dni.value = dniF
     nombre.value = nombreF
     posicion.value = posicionF
     tiempo.value = tiempoF
-    ciudad.value = ciudadF
+    ciudadId.value = ciudadF
 
     axios.post('http://localhost:3000/atleta', {
       dni: dni.value,
       nombre: nombre.value,
       posicion: posicion.value,
       tiempo: tiempo.value,
-      ciudad: ciudad.value
+      ciudadId: ciudadId.value
     }).then(response => {
         console.log('Atleta creado: ' + response.data)
     }).catch(error => {
@@ -29,5 +29,5 @@ export const useAtletaStore = defineStore('atleta', () => {
     })
   }
 
-  return { dni, nombre, posicion, tiempo, ciudad, registarForm }
+  return { dni, nombre, posicion, tiempo, ciudadId, registarForm }
 })

@@ -32,7 +32,10 @@
     <div v-if="data">
         <p>Listado de ciudades</p>
         <ul>
-            <li v-for="value in ciudades" :key="value.id">{{ value.nombre }} <button class="btn btn-danger" @click="eliminar(value.id)">X</button></li>
+            <li v-for="value in ciudades" :key="value.id">
+                {{ value.nombre }} 
+                <button class="btn btn-danger" @click="eliminar(value.id)">X</button>
+            </li>
         </ul>
     </div>
     <div v-if="error">
