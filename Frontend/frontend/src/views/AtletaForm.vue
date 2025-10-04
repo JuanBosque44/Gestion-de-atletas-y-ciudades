@@ -12,7 +12,12 @@ const tiempo = ref('');
 const ciudad = ref('');
 const {registarForm} = useAtletaStore();
 
-const submitForm = () => {
+const submitForm = (event) => {
+    if(!nombre.value || !dni.value || !posicion.value || !tiempo.value || !ciudad.value) {
+        alert('Por favor, complete todos los campos del formulario.');
+        event.preventDefault();
+        return;
+    }
     const ciudadId = Number(ciudad.value);
     registarForm(dni.value, nombre.value, posicion.value, tiempo.value,ciudadId);
     router.push('/atleta');   

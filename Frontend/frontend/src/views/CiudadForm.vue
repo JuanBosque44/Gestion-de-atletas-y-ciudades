@@ -6,10 +6,14 @@
     const router = useRouter();
     const nombre = ref('');
     const {registarForm} = useCiudadStore();
-    const submitForm = () => {
+    const submitForm = (event) => {
+            if(!nombre.value) {
+                alert('Por favor, complete el campo del formulario.');
+                event.preventDefault();
+                return;
+            }
         registarForm(nombre.value);
-        router.push('/ciudad');
-                
+        router.push('/ciudad');    
     }
 </script>
 
